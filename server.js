@@ -1,17 +1,39 @@
+//3RD PARTIES!!!
 require("dotenv").config({ path: "config.env" });
 const express = require("express");
+const session = require("express-session");
+const store = require("connect-mongo").default;
+
+// CUSTOM
 const databaseConn = require("./server/database/connect");
+const authRouter = require("./server/routes/auth");
+const passport = require("./server/service/passport");
+
+// MONGO STORE
+let sessionStore = store.create({
+  mongoUrl: process.env.MONGO_URL,
+  collection: "session",
+});
 
 const app = express();
 
-app.get("/", (req, res, next) => {
-  try {
-    res.json({ message: "welcome home" });
-  } catch (err) {
-    next(err);
-    console.log(err);
-  }
-});
+// FOR PARSING REQUEST
+app.use(express.json());
+
+// session Middleware
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: true,
+    saveUninitialized: true,
+    store: sessionStore,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/api/v1/auth", authRouter); // Authnetication routes
 
 // 404 NOT FOUND ERROR
 app.use((req, res, next) => {
@@ -21,6 +43,7 @@ app.use((req, res, next) => {
 
 // 500 SERVER ERROR
 app.use((err, req, res, next) => {
+  console.log(err);
   res.status(500).json({
     message: "An error occurred. Our engineers are fixing this right now!!",
   });

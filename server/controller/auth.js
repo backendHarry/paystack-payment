@@ -36,8 +36,8 @@ const loginController = (req, res, next) => {
       res.json({ message: "logged in success" });
     })(req, res, next);
   } catch (err) {
-    // console.log(err);
-    // next(err);
+    console.log(err);
+    next(err);
     res.send(err);
   }
 };

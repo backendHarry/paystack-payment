@@ -4,6 +4,7 @@ const userSchema = new Schema({
   username: String,
   email: String,
   password: String,
+  products: [{ type: Schema.Types.ObjectId, ref: "products" }],
 });
 
 const user = model("users", userSchema);

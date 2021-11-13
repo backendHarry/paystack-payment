@@ -17,11 +17,11 @@ const authHandler = async (username, password, cb) => {
 
 passport.use(new Local(authHandler));
 
-passport.serializeUser((err, user) => {
+passport.serializeUser((err, user, cb) => {
   cb(null, user.id);
 });
 
-passport.deserializeUser(async (id) => {
+passport.deserializeUser(async (id, cb) => {
   let user = await User.findById(id);
   if (user) {
     cb(null, user);

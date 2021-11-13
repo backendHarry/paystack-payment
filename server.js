@@ -6,8 +6,13 @@ const store = require("connect-mongo").default;
 
 // CUSTOM
 const databaseConn = require("./server/database/connect");
+
 const authRouter = require("./server/routes/auth");
+const productRoute = require("./server/routes/products");
+
 const passport = require("./server/service/passport");
+
+const isAuthFunc = require("./server/middleware/auth");
 
 // MONGO STORE
 let sessionStore = store.create({
@@ -34,6 +39,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use("/api/v1/auth", authRouter); // Authnetication routes
+app.use("/api/v1/", isAuthFunc, productRoute); // product Routes
 
 // 404 NOT FOUND ERROR
 app.use((req, res, next) => {

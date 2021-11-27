@@ -1,0 +1,173 @@
+.modal {
+  width: 95%;
+  height: 15rem;
+  background: white;
+  position: absolute;
+  z-index: 2;
+  top: 10%;
+  left: 50%;
+  margin: auto;
+  transform: translate(-50%, 3%);
+  border-radius: 10px;
+  padding: 1.1rem 1.5rem;
+}
+
+.modal-title {
+  border-bottom: 1.5px solid var(--light-grayish-blue);
+  padding: 0.7rem 0;
+}
+
+.modal-title h1 {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.modal-content {
+  margin-top: 0.8rem;
+  height: 50%;
+  overflow-y: scroll;
+}
+
+.modal-content .item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal img {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 0.3rem;
+}
+
+.item {
+  margin: 1rem 0;
+}
+
+.amount-and-product-name {
+  margin-right: 1rem;
+}
+
+.no-item-in-cart {
+  font-weight: 600;
+  color: var(--dark-grayish-blue);
+  font-size: 0.8rem;
+  width: 50%;
+  margin: 3rem auto;
+}
+
+.amount-and-product-name h3,
+.amount-and-product-name h4 {
+  font-size: 0.9rem;
+  color: var(--dark-grayish-blue);
+  font-weight: 50;
+  letter-spacing: 0.9px;
+  padding: 4px 0;
+}
+
+.amount-and-product-name .total-amount {
+  font-weight: 800;
+  color: var(--very-vark-blue);
+}
+
+.item .delete-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.modal button {
+  width: 90%;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 0.9rem;
+  border-radius: 10px;
+  border: none;
+  color: var(--white);
+  background: var(--orange);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+@media screen and (min-width: 1200px) {
+  .modal {
+    width: 21%;
+    box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.4);
+    position: absolute;
+    z-index: 2;
+    top: 3.7rem;
+    left: initial;
+    right: 10rem;
+    margin: initial;
+    transform: initial;
+    border-radius: 2px;
+    padding: initial;
+    height: auto;
+    padding-bottom: 4rem;
+  }
+
+  .modal-title {
+    border-bottom: 2px solid var(--light-grayish-blue);
+    padding: initial;
+  }
+
+  .modal-title h1 {
+    padding: 1rem 1rem 0.8rem 1rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .modal-content {
+    overflow: hidden;
+    margin-top: initial;
+    height: initial;
+    padding: 0.5rem 1rem;
+    margin-right: 0rem;
+  }
+
+  .no-item-in-cart {
+    font-weight: 800;
+    color: var(--dark-grayish-blue);
+    font-size: 0.7rem;
+    width: 50%;
+    margin: 3rem auto;
+  }
+
+  .item {
+    margin: initial;
+    margin-top: 1.3rem;
+  }
+
+  .amount-and-product-name {
+    margin-right: initial;
+    margin-right: 2.5rem;
+  }
+
+  .modal img {
+    height: 2.2rem;
+    width: 2.2rem;
+    border-radius: 0.2rem;
+  }
+
+  .amount-and-product-name h3,
+  .amount-and-product-name h4 {
+    font-size: 0.8rem;
+    color: var(--dark-grayish-blue);
+    font-weight: lighter;
+    letter-spacing: 0px;
+    padding: 2px 0;
+  }
+
+  .item .delete-icon {
+    width: 0.7rem;
+    height: 0.7rem;
+  }
+
+  .modal button {
+    width: 90%;
+    padding: 0.7rem;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    bottom: 1rem;
+  }
+}

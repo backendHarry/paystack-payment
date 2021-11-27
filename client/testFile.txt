@@ -1,0 +1,22 @@
+my modal accepts data in form of 
+
+{
+    img: "images/image-product-1.jpg",
+    title: "Autumn Limited Edition",
+    price: 125.0,
+    count: 3,
+}
+
+and this will have to work with the backend.
+
+
+
+Let's say for a product, we have info like price, name, and images url,
+
+we can have this
+
+{
+    name: ....,
+    price: ....,
+    images: [....]
+}

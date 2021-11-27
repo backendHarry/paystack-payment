@@ -1,0 +1,217 @@
+:root {
+  --orange: hsl(26, 100%, 55%);
+  --pale-orange: hsl(25, 100%, 94%);
+  --very-vark-blue: hsl(220, 13%, 13%);
+  /* --dark-grayish-blue: hsl(217, 9%, 45%); */
+  --dark-grayish-blue: rgb(104, 112, 125);
+  --grayish-blue: hsl(220, 14%, 75%);
+  --light-grayish-blue: hsl(223, 64%, 98%);
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(0, 0%, 0%);
+  /* --black (with 75% opacity for lightbox background): hsl(0, 0%, 0%); */
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.3rem 0;
+  width: 90%;
+  margin: auto;
+}
+
+.logo-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.header .nav {
+  /* display: none; */
+  position: absolute;
+  top: 0;
+  left: -25rem;
+  z-index: 5;
+  background: white;
+  height: 100vh;
+  width: 17rem;
+  transition: 0.8s ease-in-out all;
+}
+
+.nav > img {
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+
+.header .nav ul {
+  margin-top: 3rem;
+  margin-left: 2rem;
+}
+
+.header .nav ul li {
+  list-style: none;
+  margin-top: 1.5rem;
+}
+
+.header .nav ul li button {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(-very-vark-blue);
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+.profile-and-cart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 20%;
+}
+
+.profile-and-cart .cart img {
+  filter: brightness(0);
+}
+
+.cart-icon {
+  position: relative;
+}
+
+.items-count {
+  position: absolute;
+  top: -15px;
+  left: 15px;
+  font-size: 0.6rem;
+  background: var(--orange);
+  color: var(--white);
+  padding: 0.15rem 0.25rem;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  text-align: center;
+}
+
+.profile-picture {
+  height: 2rem;
+  width: 2rem;
+}
+
+.profile-picture img {
+  height: 100%;
+  width: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.8rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid rgba(104, 112, 125, 0.4);
+    padding-left: initial;
+    padding-right: initial;
+  }
+
+  .logo img {
+    transform: scale(0.7);
+  }
+
+  .nav-mobile-btn {
+    display: none;
+  }
+
+  .logo-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 38%;
+  }
+
+  .header .nav {
+    position: initial;
+    height: initial;
+    width: initial;
+  }
+
+  .nav > img {
+    display: none;
+  }
+
+  .header .nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 150%;
+    margin-top: initial;
+    margin-left: initial;
+  }
+
+  .header .nav ul li {
+    list-style: none;
+    margin-top: initial;
+  }
+
+  .header .nav ul li button {
+    border: none;
+    background: none;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: rgba(5, 11, 20, 0.4);
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    letter-spacing: initial;
+  }
+
+  .nav ul li button::after {
+    position: absolute;
+    content: "";
+    width: 0%;
+    height: 0.15rem;
+    background: var(--orange);
+    bottom: -1.6rem;
+    left: 0;
+    /* padding-bottom: 0.7rem; */
+  }
+
+  .nav ul li button:hover {
+    color: var(--black);
+  }
+
+  .nav ul li button:hover::after {
+    width: 100%;
+    transition: 0.2s ease-in width;
+  }
+
+  .profile-and-cart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: initial;
+  }
+
+  .cart img {
+    transform: scale(0.8);
+    margin-right: 1.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+
+  .profile-picture {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .profile-picture img {
+    /* transform: scale(0.6); */
+    cursor: pointer;
+  }
+
+  .profile-picture:hover {
+    border: 2px solid var(--orange);
+    border-radius: 50%;
+  }
+}

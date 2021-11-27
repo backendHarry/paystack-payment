@@ -60,6 +60,7 @@ const itemsInCart = async (req, res, next) => {
     next(err);
   }
 };
+
 // Next will be to redirect users to make payment, probably change the itemsInCart function to a confirmCart logic, before the redirect
 module.exports = {
   prodController,

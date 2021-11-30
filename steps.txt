@@ -6,3 +6,5 @@
 4) After Creating everything both with paystack, we save some info a DB for us to have evidence of transactions
 
 So what we do, is that we create an account, or log in with an account. Then we buy an item then we proceed to checkout and be redirected to paystack section.
+
+

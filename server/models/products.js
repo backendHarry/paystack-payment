@@ -1,10 +1,9 @@
 const { Schema, model } = require("mongoose");
 
 const productSchema = new Schema({
-  name: String,
+  name: { type: String, unique: true },
   price: Number,
-  description: String,
-  user: { type: Schema.Types.ObjectId, ref: "users" , required: true},
+  images: [String],
 });
 
 const productModel = model("products", productSchema);

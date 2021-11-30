@@ -3,16 +3,17 @@ require("dotenv").config({ path: "config.env" });
 const express = require("express");
 const session = require("express-session");
 const store = require("connect-mongo").default;
+const passport = require("passport");
 
 // CUSTOM
 const databaseConn = require("./server/database/connect");
 
-const authRouter = require("./server/routes/auth");
-const productRoute = require("./server/routes/products");
+// Admin functionality
+require("./admin");
 
-const passport = require("./server/service/passport");
-
-const isAuthFunc = require("./server/middleware/auth");
+// Urls
+const authUrl = require("./server/routes/auth");
+const productsUrl = require("./server/routes/products");
 
 // MONGO STORE
 let sessionStore = store.create({
@@ -29,7 +30,7 @@ app.use(express.json());
 app.use(
   session({
     secret: process.env.SECRET,
-    resave: true,
+    resave: false,
     saveUninitialized: true,
     store: sessionStore,
   })
@@ -38,8 +39,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("/api/v1/auth", authRouter); // Authnetication routes
-app.use("/api/v1/", isAuthFunc, productRoute); // product Routes
+app.use("/api/v1/auth", authUrl);
+app.use("/api/v1/products", productsUrl);
 
 // 404 NOT FOUND ERROR
 app.use((req, res, next) => {

@@ -1,6 +1,14 @@
-const isAuthenticated = (req, res, next) => {
+const isLoggedIn = (req, res, next) => {
   try {
-    if (req.isAuthenticated()) {
+    if (!req.isAuthenticated()) {
+      // res.redirect(
+      //   // "api/v1/auth/login?message=Please log in to continue with the app"
+      //   "loginController"
+      // );
+      res.redirect(
+        "../auth/login?message=Please log in to continue with the app"
+      );
+    } else {
       return next();
     }
   } catch (err) {
@@ -9,4 +17,4 @@ const isAuthenticated = (req, res, next) => {
   }
 };
 
-module.exports = isAuthenticated;
+module.exports = isLoggedIn;

@@ -1,21 +1,15 @@
 const express = require("express");
+const productRouter = express.Router();
 
-const isAuth = require("../middleware/auth");
+// Middleware
+const isLoggedInMiddleware = require("../middleware/auth");
+
 const {
-  prodController,
-  createProduct,
-  buyProduct,
-  itemsInCart,
+  productsListController,
+  productCheckout,
 } = require("../controller/products");
 
-const productRoutes = express.Router();
+productRouter.get("/products", productsListController);
+productRouter.get("/checkout", isLoggedInMiddleware, productCheckout);
 
-// GET
-productRoutes.get("/products", isAuth, prodController);
-productRoutes.get("/buy-products/:id", isAuth, buyProduct);
-productRoutes.get("/cart-items/", isAuth, itemsInCart);
-
-// POST
-productRoutes.post("/create-products", createProduct);
-
-module.exports = productRoutes;
+module.exports = productRouter;

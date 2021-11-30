@@ -11,8 +11,11 @@ const connFunction = async (cb) => {
     };
     const connection = await mongoose.connect(process.env.MONGO_URL, options);
     console.log(`Database connected at ${connection.connection.host}`);
-    cb();
-    return connection;
+    if (cb) {
+      return cb();
+    } else {
+      return connection;
+    }
   } catch (err) {
     console.log(err);
   }

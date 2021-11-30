@@ -1,31 +1,37 @@
 const passport = require("passport");
-const Local = require("passport-local").Strategy;
+const LocalStrategy = require("passport-local");
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 
-const authHandler = async (username, password, cb) => {
-  let user = await User.findOne({ username: username });
+const authFunction = async (username, password, cb) => {
+  const user = await User.findOne({ username });
   if (!user) {
-    cb(null, false, { errors: { username: "incorrect credentials" } });
+    cb(null, false, {
+      error: {
+        username: "Sorry, username is wrong. Make sure it is fakeAdmin",
+      },
+    });
   }
-  let isValid = await bcrypt.compare(password, user.password);
-  if (!isValid) {
-    cb(null, false, { errors: { password: "Incorrect credentials" } });
+  const isCorrect = await bcrypt.compare(password, user.password);
+  if (!isCorrect) {
+    cb(null, false, {
+      error: {
+        password: "Oops!. Password is wrong, make sure password is admin123",
+      },
+    });
   }
-  cb(null, user);
+  if (user && isCorrect) return cb(null, user);
 };
 
-passport.use(new Local(authHandler));
+passport.use(new LocalStrategy(authFunction));
 
-passport.serializeUser((err, user, cb) => {
+passport.serializeUser((user, cb) => {
   cb(null, user.id);
 });
 
 passport.deserializeUser(async (id, cb) => {
-  let user = await User.findById(id);
-  if (user) {
-    cb(null, user);
-  }
+  const user = await User.findById(id);
+  if (user) return cb(null, user);
 });
 
 module.exports = passport;

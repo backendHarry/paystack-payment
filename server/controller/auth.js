@@ -1,25 +1,20 @@
-const bcrypt = require("bcrypt");
-const validateData = require("../service/validation");
+const express = require("express");
 const User = require("../models/user");
-// const passport = require("passport");
+const validateBody = require("../service/validation");
+const bcrypt = require("bcrypt");
 const passport = require("../service/passport");
-
-const indexController = async (req, res, next) => {
-  try {
-    let user = await User.findOne({ username: "harrison" });
-    res.send("hello, welcome home");
-  } catch (err) {
-    console.log(err);
-  }
-};
 
 const registerController = async (req, res, next) => {
   try {
-    const result = validateData(req.body);
-    const hashedPwd = await bcrypt.hash(result.password, 10);
-    result.password = hashedPwd;
-    const userData = await user.create(result);
-    return res.status(201).json({ data: userData });
+    const username = "fakeAdmin";
+    const password = "admin123";
+    const user = {
+      username: username,
+      password: password,
+    };
+    user.password = await bcrypt.hash(user.password, 10);
+    const fakeUser = await User.create(user);
+    res.json({ message: "fakeUser created", user: user });
   } catch (err) {
     console.log(err);
     next(err);
@@ -29,21 +24,22 @@ const registerController = async (req, res, next) => {
 const loginController = (req, res, next) => {
   try {
     passport.authenticate("local", (err, user, info) => {
-      if (!user) return res.json({ info });
+      if (err) console.log(err);
+      if (!user) return res.status(401).json({ info });
       req.logIn(user, (err) => {
-        next(err);
+        if (err) {
+          console.log(err);
+          return next(err);
+        }
       });
       res.json({ message: "logged in success" });
     })(req, res, next);
   } catch (err) {
     console.log(err);
     next(err);
-    res.send(err);
   }
 };
-
 module.exports = {
-  indexController,
   registerController,
   loginController,
 };

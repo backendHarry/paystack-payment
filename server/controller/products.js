@@ -12,7 +12,8 @@ const productsListController = async (req, res, next) => {
 
 const productCheckout = (req, res, next) => {
   try {
-    res.send("testing");
+    const email = req.user.email ? req.user.email : "NO EMAIL YET";
+    res.send(`You are now at Flutter wave page. your email is ${email}`);
   } catch (err) {
     console.log(err);
     next(err);

@@ -8,9 +8,6 @@ const passport = require("passport");
 // CUSTOM
 const databaseConn = require("./server/database/connect");
 
-// Admin functionality
-require("./admin");
-
 // Urls
 const authUrl = require("./server/routes/auth");
 const productsUrl = require("./server/routes/products");
@@ -63,3 +60,6 @@ databaseConn(() =>
     console.log(`server is currently running at PORT ${PORT}`)
   )
 );
+
+// Admin functionality
+require("./admin");

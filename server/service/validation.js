@@ -13,10 +13,10 @@ const validationSchema = joi.object({
     "any.required": "please enter a password",
     "string.min": "your password must not have a minimium of 6 characters",
   }),
-  confirmPassword: joi.any().valid(joi.ref("password")).required().messages({
-    "any.only": "Passwords do not match",
-    "any.required": "Please re-enter your password",
-  }),
+  // confirmPassword: joi.any().valid(joi.ref("password")).required().messages({
+  //   "any.only": "Passwords do not match",
+  //   "any.required": "Please re-enter your password",
+  // }),
 });
 
 const validateBody = (data) => {
@@ -24,15 +24,14 @@ const validateBody = (data) => {
     username: null,
     email: null,
     password: null,
-    confirmPassword: null,
   };
   const { error, value } = validationSchema.validate(data);
   if (error) {
     const { path, message } = error["details"][0];
     errorMsg[path[0]] = message;
-    return errorMsg;
+    return { error: errorMsg };
   } else {
-    return value;
+    return { value: value };
   }
 };
 

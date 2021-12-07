@@ -1,4 +1,6 @@
 const productsModel = require("./server/models/products");
+const Users = require("./server/models/user");
+const bcrypt = require("bcrypt");
 
 let productDetails = {
   name: "fall limited edition sneakers",
@@ -11,10 +13,17 @@ let productDetails = {
   ],
 };
 
-const createProducts = async (productDetails) => {
+let userInfo = {
+  username: "fakeAdmin",
+  password: "admin123",
+};
+
+const createInfo = async (userInfo, productDetails) => {
   try {
+    userInfo.password = await bcrypt.hash(userInfo.password, 10);
+    await Users.create(userInfo);
     await productsModel.create(productDetails);
   } catch (err) {}
 };
 
-createProducts(productDetails);
+createInfo(userInfo, productDetails);

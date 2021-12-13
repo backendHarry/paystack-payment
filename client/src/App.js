@@ -3,20 +3,23 @@ import Header from "./components/header";
 import HeroImgs from "./components/heroImgs";
 import ProductDetail from "./components/productDetail";
 import CustomModal from "./components/modal";
+import axios from "axios";
 
 function App() {
   // Product info
   // Assuming we have just one product just one product to sell
   const [product, setProduct] = useState({
-    name: "fall limited edition sneakers",
-    price: 125.0,
-    images: [
-      "imagesFolder/image-product-1.jpg",
-      "imagesFolder/image-product-2.jpg",
-      "imagesFolder/image-product-3.jpg",
-      "imagesFolder/image-product-4.jpg",
-    ],
+    name: "",
+    price: Number(""),
+    images: [],
+    // where that is the default image
   });
+  useEffect(() => {
+    axios.get("/api/v1/products/products").then((result) => {
+      let { product } = result.data;
+      setProduct(product);
+    });
+  }, []);
 
   // NAVBAR FUNCTIONALITY
   const [openNav, setOpenNav] = useState(false); //NavBar
@@ -38,7 +41,7 @@ function App() {
   };
 
   const decreaseCount = () => {
-    if (itemCount > 0) {
+    if (itemCount > 1) {
       setItemCount((prev) => prev - 1);
     } else {
       setItemCount(1);
@@ -50,16 +53,19 @@ function App() {
 
   // ADD TO CART FUNCTIONALITY
   const [cartItemDetails, setCartItemDetails] = useState({
-    img: product.images ? product.images[0] : null, //'normally null here will be a default icon'
+    img: null, //'normally null here will be a default icon'
     title: null,
     price: null,
     count: null,
+    countPrice: null,
   });
   const addToCartFunc = () => {
     let details = cartItemDetails;
     details["title"] = product.name;
     details["price"] = product.price;
     details["count"] = itemCount;
+    details["img"] = product.images[0];
+    details["countPrice"] = itemCount * product.price;
     setCartItemDetails(details); //Only for an item in cart
 
     // UPDATE CART LIST
@@ -68,11 +74,13 @@ function App() {
     setContents(listContents);
 
     details = {
-      img: product.images ? product.images[0] : null,
+      img: null,
       title: null,
       price: null,
       count: null,
+      countPrice: null,
     };
+    // This will update the individual items back after adding them to cart
     setCartItemDetails(details); //UPDATE THE STATE BACK FOR INDEPENDENT CART ITEMS
   };
 
@@ -101,7 +109,7 @@ function App() {
         />
         <CustomModal modalOpen={modalOpen} contents={contents} />
         <div className="product-section">
-          <HeroImgs images={product.images} />
+          {product.images && <HeroImgs images={product.images} />}
           <ProductDetail
             increaseCount={increaseCount}
             itemCount={itemCount}

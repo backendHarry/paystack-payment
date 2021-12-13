@@ -4,6 +4,7 @@ const express = require("express");
 const session = require("express-session");
 const store = require("connect-mongo").default;
 const passport = require("passport");
+const cors = require("cors");
 
 // CUSTOM
 const databaseConn = require("./server/database/connect");
@@ -19,6 +20,9 @@ let sessionStore = store.create({
 });
 
 const app = express();
+
+// CORS
+app.use(cors());
 
 // FOR PARSING REQUEST
 app.use(express.json());
@@ -63,3 +67,5 @@ databaseConn(() =>
 
 // Admin functionality
 require("./admin");
+
+// "dev": "nodemon server.js --ignore client"

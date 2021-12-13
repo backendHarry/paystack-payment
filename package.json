@@ -4,7 +4,7 @@
   "description": "A node project to learn payment integration with paystack api for backend",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js --ignore client"
   },
   "author": "Harrison Osagiede",
   "license": "MIT",

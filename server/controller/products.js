@@ -2,8 +2,8 @@ const productsModel = require("../models/products");
 
 const productsListController = async (req, res, next) => {
   try {
-    const products = await productsModel.find();
-    res.json({ products: products });
+    const product = await productsModel.findOne();
+    res.json({ product: product });
   } catch (err) {
     console.log(err);
     next(err);

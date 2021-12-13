@@ -1,10 +1,10 @@
 const isLoggedIn = (req, res, next) => {
   try {
     if (!req.isAuthenticated()) {
-      res.json({
+      res.status(200).json({
         redirect: true,
         redirectUrl:
-          "auth/login?message=Please log in to continue with the app",
+          "auth/login?redirect=true&&message=Please log in to continue with the app",
       });
     } else {
       return next();

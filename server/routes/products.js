@@ -10,6 +10,6 @@ const {
 } = require("../controller/products");
 
 productRouter.get("/products", productsListController);
-productRouter.get("/checkout", isLoggedInMiddleware, productCheckout);
+productRouter.post("/checkout", isLoggedInMiddleware, productCheckout);
 
 module.exports = productRouter;

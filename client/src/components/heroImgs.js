@@ -1,36 +1,35 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import iconPrev from "../images/icon-previous.svg";
 import iconNext from "../images/icon-next.svg";
 import "../css/heroImgs.css";
 
 const HeroImgs = ({ images }) => {
-  const [imgPreviewList, setImgPreviewList] = useState(images);
-
-  let [showNextElement, setShowNextElement] = useState(0);
-
-  useEffect(() => {
-    let listElements = Array.from(fieldRef.current.children);
-    listElements[showNextElement].scrollIntoView();
-  }, [showNextElement]);
+  const imgPreviewList = images;
 
   const fieldRef = useRef();
   //Take useRef or rather definedName = useRef() as document.querySelector('..')
+
+  // for images gallery transition and scrollIntoView Effect
+  const countRef = useRef(0);
+
   const nextHandler = () => {
     let listElements = Array.from(fieldRef.current.children);
-    if (showNextElement === listElements.length - 1) {
-      setShowNextElement(0);
+    if (countRef.current === listElements.length - 1) {
+      countRef.current = 0;
     } else {
-      setShowNextElement(showNextElement + 1);
+      countRef.current = countRef.current + 1;
     }
+    listElements[countRef.current].scrollIntoView();
   };
 
   const prevHandler = () => {
     let listElements = Array.from(fieldRef.current.children);
-    if (showNextElement === 0) {
-      setShowNextElement(listElements.length - 1);
+    if (countRef.current === 0) {
+      countRef.current = listElements.length - 1;
     } else {
-      setShowNextElement(showNextElement - 1);
+      countRef.current = countRef.current - 1;
     }
+    listElements[countRef.current].scrollIntoView();
   };
 
   return (

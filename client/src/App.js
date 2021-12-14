@@ -4,6 +4,7 @@ import HeroImgs from "./components/heroImgs";
 import ProductDetail from "./components/productDetail";
 import CustomModal from "./components/modal";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function App() {
   // Product info
@@ -84,6 +85,23 @@ function App() {
     setCartItemDetails(details); //UPDATE THE STATE BACK FOR INDEPENDENT CART ITEMS
   };
 
+  // FOR MODAL
+  const history = useHistory();
+  const submitCheckoutData = (e) => {
+    e.preventDefault();
+    axios
+      .post("/api/v1/products/checkout", contents)
+      .then((response) => {
+        const { data } = response;
+        if (data.redirect) {
+          // localStorage.setItem("item", contents);
+          history.push(data.redirectUrl);
+        }
+      })
+      .catch((err) => console.log(err));
+    setContents([]);
+  };
+
   return (
     <>
       <div style={{ postion: "relative" }}>
@@ -107,7 +125,11 @@ function App() {
           setModalOpenFunc={setModalOpenFunc}
           contents={contents}
         />
-        <CustomModal modalOpen={modalOpen} contents={contents} />
+        <CustomModal
+          modalOpen={modalOpen}
+          contents={contents}
+          submitCheckoutData={submitCheckoutData}
+        />
         <div className="product-section">
           {product.images && <HeroImgs images={product.images} />}
           <ProductDetail

@@ -1,23 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import deleteIcon from "../images/icon-delete.svg";
 import "../css/modal.css";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
 
-const CustomModal = ({ modalOpen, contents }) => {
-  const history = useHistory();
-  const submitCheckoutData = (e) => {
-    e.preventDefault();
-    axios
-      .post("/api/v1/products/checkout", contents)
-      .then((response) => {
-        const { data } = response;
-        if (data.redirect) {
-          history.push(data.redirectUrl);
-        }
-      })
-      .catch((err) => console.log(err));
-  };
+const CustomModal = ({ modalOpen, contents, submitCheckoutData }) => {
   return (
     <div>
       {modalOpen ? (

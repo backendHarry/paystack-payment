@@ -4,6 +4,7 @@ const User = require("../models/user");
 const bcrypt = require("bcrypt");
 
 const authFunction = async (username, password, cb) => {
+  try{
   const user = await User.findOne({ username });
   if (!user) {
     cb(null, false, {
@@ -12,15 +13,20 @@ const authFunction = async (username, password, cb) => {
       },
     });
   }
-  const isCorrect = await bcrypt.compare(password, user.password);
-  if (!isCorrect) {
+  else{
+    const isCorrect = await bcrypt.compare(password, user.password);
+    if (!isCorrect) {
     cb(null, false, {
       error: {
         password: "Oops!. Password is wrong, make sure password is admin123",
       },
     });
+    }
   }
-  if (user && isCorrect) return cb(null, user);
+  return cb(null, user);
+  }catch(err){
+    console.log(err)
+  }
 };
 
 passport.use(new LocalStrategy(authFunction));

@@ -96,6 +96,8 @@ function App() {
         if (data.redirect) {
           // localStorage.setItem("item", contents);
           history.push(data.redirectUrl);
+        } else {
+          window.location.href = data; //redirect to paystack cehckout url
         }
       })
       .catch((err) => console.log(err));

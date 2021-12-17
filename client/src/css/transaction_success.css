@@ -1,0 +1,66 @@
+/* .transaction_success {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 15rem;
+  width: 30rem;
+  text-align: center;
+}
+
+.transaction_message {
+  font-size: 1.2rem;
+  font-weight: bolder;
+  margin-top: 4rem;
+}
+
+.transaction_success > button {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 3px;
+  background: var(--orange);
+  border: none;
+  color: white;
+  cursor: pointer;
+} */
+
+.transaction_success {
+  overflow-x: hidden;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 20rem;
+}
+
+.transaction_success_contents {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.transaction_message {
+  font-size: 1.2rem;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.transaction_success button {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 3px;
+  background: var(--orange);
+  border: none;
+  color: white;
+  cursor: pointer;
+}

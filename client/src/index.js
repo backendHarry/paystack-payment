@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import Login from "./pages/login";
+import TransactionSuccess from "./pages/transaction_success";
 import "./css/index.css";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -10,6 +11,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Switch>
+        <Route path="/transaction/success">
+          <TransactionSuccess />
+        </Route>
         <Route path="/auth/login">
           <Login />
         </Route>

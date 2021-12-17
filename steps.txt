@@ -7,4 +7,8 @@
 
 So what we do, is that we create an account, or log in with an account. Then we buy an item then we proceed to checkout and be redirected to paystack section.
 
-
+MONGO_URL = mongodb://127.0.0.1:27017/paystack-app
+"heroku-postbuild":"npm run install-client && npm run client",
+"heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+ "client":"cd client && npm run build",
+    "install-client":"cd client && npm install",

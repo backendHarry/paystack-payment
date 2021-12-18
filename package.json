@@ -6,7 +6,8 @@
   "scripts": {
     "start":"node server.js",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "cd client/ && npm install --only=dev && NODE_ENV=development npm install --no-shrinkwrap && npm run build",
+    "client-install": "cd client && npm install",
+    "heroku-postbuild": "npm run client-insall && npm run build",
     "dev": "nodemon server.js --ignore client"
   },
   "author": "Harrison Osagiede",

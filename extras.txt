@@ -1,1 +1,2 @@
 "client-install": "cd client && npm install",
+"heroku-postbuild": "cd client && npm install && npm run build",

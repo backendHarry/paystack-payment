@@ -5,6 +5,7 @@ const session = require("express-session");
 const store = require("connect-mongo").default;
 const passport = require("passport");
 const cors = require("cors");
+const path = require("path");
 
 // CUSTOM
 const databaseConn = require("./server/database/connect");
@@ -60,6 +61,9 @@ app.use((err, req, res, next) => {
 // production use case
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "build", "client", "index.html"));
+  });
 }
 
 // DATABASE AND SERVER CONNECTION

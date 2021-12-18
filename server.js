@@ -44,6 +44,11 @@ app.use(passport.session());
 app.use("/api/v1/auth", authUrl);
 app.use("/api/v1/products", productsUrl);
 
+// production use case
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 // 404 NOT FOUND ERROR
 app.use((req, res, next) => {
   res.status(404).json({ message: "sorry, the required resource not found." });
@@ -57,14 +62,6 @@ app.use((err, req, res, next) => {
     message: "An error occurred. Our engineers are fixing this right now!!",
   });
 });
-
-// production use case
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
 
 // DATABASE AND SERVER CONNECTION
 const PORT = process.env.PORT || 3000;

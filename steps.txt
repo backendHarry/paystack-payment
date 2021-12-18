@@ -12,3 +12,4 @@ MONGO_URL = mongodb://127.0.0.1:27017/paystack-app
 "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
  "client":"cd client && npm run build",
     "install-client":"cd client && npm install",
+"proxy": "http://localhost:5000",

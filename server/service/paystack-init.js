@@ -6,7 +6,7 @@ const paystackInitialization = async (email, amount) => {
   const data = {
     email,
     amount,
-    callback_url: "http://127.0.0.1:3000/transaction/success",
+    callback_url: "https://paystack-pratice.herokuapp.com/transaction/success",
   };
   const headers = {
     "content-type": "application/json",

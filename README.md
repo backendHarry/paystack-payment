@@ -10,7 +10,7 @@ Frontend design (UI/UX) is a chanllenge from [FRONTENDMENTOR](https://www.fronte
 Needed some quick Ui to build with and frontendmentor was the best resource to find, offcourse with the designs, images, e.t.c
 
 project link is https://paystack-pratice.herokuapp.com/
-Hosted on HEEOKU
+Hosted on HEROKU
 
 ## Stacks used for project
 

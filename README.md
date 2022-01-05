@@ -9,6 +9,9 @@ The project is a project based on a minimal e-commerce web store with just a one
 Frontend design (UI/UX) is a chanllenge from [FRONTENDMENTOR](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6).
 Needed some quick Ui to build with and frontendmentor was the best resource to find, offcourse with the designs, images, e.t.c
 
+project link is https://paystack-pratice.herokuapp.com/
+Hosted on HEEOKU
+
 ## Stacks used for project
 
 The stacks used for the project is the popular MERN(MongoDb, Express, React, Node.js) and my reason for using the stack is because its flexible, good for scalability(using the event loop), and it has a larger community including frameworks, libraries, e.t.c (offcourse, it's JS so yeeeaaa!! LOL).
